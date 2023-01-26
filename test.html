@@ -8,8 +8,24 @@
         <link rel="manifest" href="manifest.json">    
     </head>
     <body>
-        <img src="logo.png" style="margin-left:auto ; margin-right:auto ; display:block">
+        <img src="logo.png" style="margin-left:auto ; margin-right:auto ; display:block" onclick="showdata('tag')">
 
         <a href="index.html">Back</a>
+
+        <p id="saved"></p>
+
+        <script>
+            function showdata(key) {
+                var persons = {};
+                try {
+                persons = JSON.parse( localStorage["personTable"]);
+                } catch (e) {
+                alert("Error when reading from Local Storage\n" + e);        
+                }
+
+                document.getElementById('saved').innerHTML = persons;
+            }
+
+        </script>
     </body>
 </html>
