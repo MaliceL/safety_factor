@@ -12,9 +12,99 @@
 
         <h1 style="text-align:center">Currently Under Construction</h1>
 
-        <a href="test.html">Test</a>
+        <button onclick="savedata()" style="margin-left:auto ; margin-right:auto ; display:block">Daten speichern</button>
+
+        <br><br>
+
+        <button onclick="showdata()" style="margin-left:auto ; margin-right:auto ; display:block">Daten zeigen</button>
+
+        <br><br>
+
+        <p id="user"></p>
+        <p id="fac1"></p>
+        <p id="fac2"></p>
+        <p id="fac3"></p>
+        <p id="fac4"></p>
+        <p id="pw1"></p>
+        <p id="pw2"></p>
+        <p id="pw3"></p>
 
         <script>
+            function savedata() {
+/*
+                var persons = {};
+                persons["2901465"] = {id: 2901465, name:"Tom"};
+                persons["3305579"] = {id: 3305579, name:"Su"};
+                persons["6492003"] = {id: 6492003, name:"Pete"};
+                try {
+                    localStorage["personTable"] = JSON.stringify( persons);
+                } catch (e) {
+                    alert("Error when writing to Local Storage\n" + e);
+                }
+*/
+                //Database Structure
+                var user = {};
+                var factor1 = {};
+                var factor2 = {};
+                var factor3 = {};
+                var factor4 = {};
+                var password = {};
+
+                //Fill Tables
+                user["user001"] = {id: 001, username: "nlischke", f1: true, f2: false, f3: true, f4: false};
+
+                factor1["fac1_001"] = {id: 1, userid: 001, data: "password"};
+                factor2["fac2_001"] = {id: 1, userid: 001, data: "placeholder2"};
+                factor3["fac3_001"] = {id: 1, userid: 001, data: "31524"};
+                factor4["fac4_001"] = {id: 1, userid: 001, data: "placeholder4"};
+
+                password["pw1_001"] = {id: 1, userid: 001, name: "google", password: "googlepw"};
+                password["pw2_001"] = {id: 2, userid: 001, name: "yahoo", password: "yahoopw"};
+                password["pw3_001"] = {id: 3, userid: 001, name: "amazon", password: "amazonpw"};
+
+                //Save Data
+                try {
+                    localStorage["users"] = JSON.stringify(user);
+                    localStorage["factor1"] = JSON.stringify(factor1);
+                    localStorage["factor2"] = JSON.stringify(factor2);
+                    localStorage["factor3"] = JSON.stringify(factor3);
+                    localStorage["factor4"] = JSON.stringify(factor4);
+                    localStorage["passwords"] = JSON.stringify(password);
+                } catch (e) {
+                    alert("Error when writing to Local Storage\n" + e);
+                }
+            }
+
+            function showdata(key) {
+                var user = {};
+                var factor1 = {};
+                var factor2 = {};
+                var factor3 = {};
+                var factor4 = {};
+                var password = {};
+
+                try {
+                    user = JSON.parse( localStorage["users"]);
+                    factor1 = JSON.parse( localStorage["factor1"]);
+                    factor2 = JSON.parse( localStorage["factor2"]);
+                    factor3 = JSON.parse( localStorage["factor3"]);
+                    factor4 = JSON.parse( localStorage["factor4"]);
+                    password = JSON.parse( localStorage["passwords"]);
+                } catch (e) {
+                    alert("Error when reading from Local Storage\n" + e);        
+                }
+
+                document.getElementById('user').innerHTML = user["user001"].username;
+                document.getElementById('fac1').innerHTML = factor1["fac1_001"].data;
+                document.getElementById('fac2').innerHTML = factor2["fac2_001"].data;
+                document.getElementById('fac3').innerHTML = factor3["fac3_001"].data;
+                document.getElementById('fac4').innerHTML = factor4["fac4_001"].data;
+                document.getElementById('pw1').innerHTML = password["pw1_001"].password;
+                document.getElementById('pw2').innerHTML = password["pw2_001"].password;
+                document.getElementById('pw3').innerHTML = password["pw3_001"].password;
+            }
+
+
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('/service-worker.js');
             }
