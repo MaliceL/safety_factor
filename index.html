@@ -12,28 +12,15 @@
 
         <h1 style="text-align:center">Currently Under Construction</h1>
 
-        <button onclick="savedata()" style="margin-left:auto ; margin-right:auto ; display:block">Daten speichern</button>
+        <button onclick="savedata()" style="margin-left:auto ; margin-right:auto ; display:block">Save test data</button>
 
         <br><br>
 
-        <button onclick="showdata()" style="margin-left:auto ; margin-right:auto ; display:block">Daten zeigen</button>
+        <button onclick="showdata()" style="margin-left:auto ; margin-right:auto ; display:block">Show current data</button>
 
         <br><br>
 
-        <form id="formular">
-            <label for="username">Username</label>
-            <input type="text" id="username"/>
-            <label for="factor1">Faktor 1</label>
-            <input type="checkbox" id="factor1"/>
-            <label for="factor2">Faktor 2</label>
-            <input type="checkbox" id="factor2"/>
-            <label for="factor3">Faktor 3</label>
-            <input type="checkbox" id="factor3"/>
-            <label for="factor4">Faktor 4</label>
-            <input type="checkbox" id="factor4"/>
-            <br>
-            <button type="submit" onclick="savedata()">Erstellen</button>
-        </form>
+        <a href="register.html">Register</a>
 
         <br><br>
 
@@ -57,7 +44,7 @@
                 var password = {};
 
                 //Fill Tables
-                user["user001"] = {id: 001, username: document.getElementById('username').value, f1: document.getElementById('factor1').checked, f2: document.getElementById('factor2').checked, f3: document.getElementById('factor3').checked, f4: document.getElementById('factor4').checked};
+                user["user001"] = {id: 001, username: 'lischke', f1: true, f2: false, f3: true, f4: false};
 
                 factor1["fac1_001"] = {id: 1, userid: 001, data: "password"};
                 factor2["fac2_001"] = {id: 1, userid: 001, data: "placeholder2"};
