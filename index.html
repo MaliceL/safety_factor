@@ -101,6 +101,19 @@
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('/service-worker.js');
             }
+
+            //Stop Context Menu
+            document.addEventListener("contextmenu", (e) => {
+                e.preventDefault();
+            }, false);
+            /*Stop inspection
+            document.addEventListener("keydown", (e) => {
+                if (e.ctrlKey || e.keyCode==123) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                }
+            });
+            */
         </script>
     </body>
 </html>

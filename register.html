@@ -63,6 +63,18 @@
                     alert("Error when writing to Local Storage\n" + e);
                 }
             }
+            //Stop Context Menu
+            document.addEventListener("contextmenu", (e) => {
+                e.preventDefault();
+            }, false);
+            /*Stop inspection
+            document.addEventListener("keydown", (e) => {
+                if (e.ctrlKey || e.keyCode==123) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                }
+            });
+            */
         </script>
     </body>
 </html>
