@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width. initial-scale=1.0">
+        <title>Safety Factor</title>
+        <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
+        <link rel="manifest" href="../manifest.json">
+        <link rel="stylesheet" href="assets/css/style.css">      
+    </head>
+    <body>
+        <nav>
+            <div style="margin-left: 3%; margin-right: 25%;">
+                <ul>
+                    <li>
+                        <a href="../index.html" style="font-size:30px">Home</a>
+                    </li>
+                    <li>
+                        <a href="register.html" style="font-size:30px">Register</a>
+                    </li>
+                    <li>
+                        <a href="test.html" style="font-size:30px">Testing</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <br></br>
+
+        <form id="formular">
+            <div style="max-width:50% ; display:block ; margin-left:15%">
+                <label for="username">Username</label>
+                <input type="text" id="username" class="form-control" style="border:solid 1px" aria-describedby="usernamehelp" placeholder="Username"/>
+            </div>
+            <br>
+            <div style="max-width:50% ; display:block ; margin-left:15%">
+                <input type="checkbox" style="border:solid 1px" id="factor1"/>
+                <label for="factor1">Faktor 1</label><br>
+                <div class="hdn-input" id="pw">
+                    <input type="text" placeholder="Enter Password" id="pw_in"/>
+                </div>
+                <input type="checkbox" style="border:solid 1px" id="factor2"/>
+                <label for="factor2">Faktor 2</label><br>
+                <div class="hdn-input" id="pin">
+                    <input type="number" placeholder="Enter PIN" id="pin_in"/>
+                </div>
+                <input type="checkbox" style="border:solid 1px" id="factor3"/>
+                <label for="factor3">Faktor 3</label><br>
+                <div class="hdn-input" id="color">
+                    <button type="button" class="color-btn" id="bbtn" value="1" onclick="colorset('bbtn')" style="border-color: blue;background-color:blue"></button><br>
+                    <button type="button" class="color-btn" id="rbtn" value="2" onclick="colorset('rbtn')" style="border-color: red;background-color:red"></button><br>
+                    <button type="button" class="color-btn" id="gbtn" value="3" onclick="colorset('gbtn')" style="border-color: green;background-color:green"></button><br>
+                    <button type="button" class="color-btn" id="ybtn" value="4" onclick="colorset('ybtn')" style="border-color: yellow;background-color:yellow"></button><br>
+                </div>
+                <input type="checkbox" style="border:solid 1px" id="factor4"/>
+                <label for="factor4">Faktor 4</label><br>
+                <div class="hdn-input" id="fac4">
+                    <input type="text" placeholder="Hier könnte ihre Werbung stehen"/>
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="sf-btn" style="margin-left:15%" onclick="savedata()">Erstellen</button>
+        </form>
+
+        <br><br>
+
+        <script>
+            function savedata() {               
+                var user = [];
+                var reguser = document.getElementById('username').value;
+
+                try {
+                    user = JSON.parse( localStorage[reguser]);
+                } catch (e) {
+                    alert("No data found");
+                    user[0] = document.getElementById('factor1').checked;
+                    user[1] = document.getElementById('pw_in').value;
+                    user[2] = document.getElementById('factor2').checked;
+                    user[3] = document.getElementById('pin_in').value;
+                    user[4] = document.getElementById('factor3').checked;
+                    user[5] = colorcode; 
+                    user[6] = document.getElementById('factor4').checked;
+                }
+
+                try {
+                    localStorage[reguser]= JSON.stringify(user);
+                } catch (e) {
+                    alert("Could not save data");
+                }
+
+            }
+
+            var colorcode = "";
+
+            function colorset(btnid) {
+                colorcode = colorcode + document.getElementById(btnid).value;
+                document.getElementById(btnid).setAttribute('disabled',true);
+                document.getElementById(btnid).style.background = 'grey';
+                document.getElementById(btnid).style.borderColor = 'grey';
+            };
+
+            var check1 = document.getElementById('factor1');
+
+            check1.addEventListener('change', function(e) {
+                if(this.checked) {
+                    document.getElementById('pw').style.display = "block";
+                } else {
+                    document.getElementById('pw').style.display = "none";
+                }
+            });
+
+            var check2 = document.getElementById('factor2');
+
+            check2.addEventListener('change', function(e) {
+                if(this.checked) {
+                    document.getElementById('pin').style.display = "block";
+                } else {
+                    document.getElementById('pin').style.display = "none";
+                }
+            });
+
+            var check3 = document.getElementById('factor3');
+
+            check3.addEventListener('change', function(e) {
+                if(this.checked) {
+                    document.getElementById('color').style.display = "block";
+                } else {
+                    document.getElementById('color').style.display = "none";
+                }
+            });
+
+            var check4 = document.getElementById('factor4');
+
+            check4.addEventListener('change', function(e) {
+                if(this.checked) {
+                    document.getElementById('fac4').style.display = "block";
+                } else {
+                    document.getElementById('fac4').style.display = "none";
+                }
+            });
+
+            document.addEventListener
+            //Stop Context Menu
+            document.addEventListener("contextmenu", (e) => {
+                e.preventDefault();
+            }, false);
+            /*Stop inspection
+            document.addEventListener("keydown", (e) => {
+                if (e.ctrlKey || e.keyCode==123) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                }
+            });
+            */
+        </script>
+    </body>
+</html>

@@ -1,7 +1,7 @@
 {
     "name": "Safety Factor",
     "short_name": "SF",
-    "start_url": "/?home=true",
+    "start_url": "./src/index.html/?home=true",
     "icons": [
         {
             "src": "icons/manifest-icon-192.maskable.png",

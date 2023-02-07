@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width. initial-scale=1.0">
+        <title>Safety Factor</title>
+        <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
+        <link rel="manifest" href="../manifest.json">
+        <link rel="stylesheet" href="assets/css/style.css">   
+    </head>
+    <body>
+        <nav>
+            <div style="margin-left: 3%; margin-right: 25%;">
+                <ul>
+                    <li>
+                        <a href="../index.html" style="font-size:30px">Home</a>
+                    </li>
+                    <li>
+                        <a href="register.html" style="font-size:30px">Register</a>
+                    </li>
+                    <li>
+                        <a href="test.html" style="font-size:30px">Testing</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <br><br>
+
+        <button class="sf-btn" onclick="savedata()">Save test data</button>
+
+        <br><br>
+
+        <button class="sf-btn" onclick="showdata()">Show current data</button>
+
+        <br><br>
+
+        <p id="user"></p>
+        <p id="fac1"></p>
+        <p id="fac2"></p>
+        <p id="fac3"></p>
+        <p id="fac4"></p>
+        <p id="pw1"></p>
+        <p id="pw2"></p>
+        <p id="pw3"></p>
+        <p id="boy"></p>
+
+        <script>
+            function savedata() {
+                //Database Structure
+                var user = {};
+                var factor1 = {};
+                var factor2 = {};
+                var factor3 = {};
+                var factor4 = {};
+                var password = {};
+
+                //Fill Tables
+                user["user001"] = {id: 001, username: 'lischke', f1: true, f2: false, f3: true, f4: false};
+
+                factor1["fac1_001"] = {id: 1, userid: 001, data: "password"};
+                factor2["fac2_001"] = {id: 1, userid: 001, data: "placeholder2"};
+                factor3["fac3_001"] = {id: 1, userid: 001, data: "31524"};
+                factor4["fac4_001"] = {id: 1, userid: 001, data: "placeholder4"};
+
+                password["pw1_001"] = {id: 1, userid: 001, name: "google", password: "googlepw"};
+                password["pw2_001"] = {id: 2, userid: 001, name: "yahoo", password: "yahoopw"};
+                password["pw3_001"] = {id: 3, userid: 001, name: "amazon", password: "amazonpw"};
+
+                //Save Data
+                try {
+                    localStorage["users"] = JSON.stringify(user);
+                    localStorage["factor1"] = JSON.stringify(factor1);
+                    localStorage["factor2"] = JSON.stringify(factor2);
+                    localStorage["factor3"] = JSON.stringify(factor3);
+                    localStorage["factor4"] = JSON.stringify(factor4);
+                    localStorage["passwords"] = JSON.stringify(password);
+                } catch (e) {
+                    alert("Error when writing to Local Storage\n" + e);
+                }
+
+                var boy = [];
+                boy[0]= 'test';
+                boy[1] = 'factor';
+                try {
+                    localStorage["lischke"] = JSON.stringify(boy);
+                } catch (e) {
+                    alert(e);
+                }
+                
+            }
+
+            function showdata(key) {
+                var user = {};
+                var factor1 = {};
+                var factor2 = {};
+                var factor3 = {};
+                var factor4 = {};
+                var password = {};
+                var boy = [];
+
+                try {
+                    user = JSON.parse( localStorage["users"]);
+                    factor1 = JSON.parse( localStorage["factor1"]);
+                    factor2 = JSON.parse( localStorage["factor2"]);
+                    factor3 = JSON.parse( localStorage["factor3"]);
+                    factor4 = JSON.parse( localStorage["factor4"]);
+                    password = JSON.parse( localStorage["passwords"]);
+                    boy = JSON.parse( localStorage["lischke"]);
+                } catch (e) {
+                    alert("Error when reading from Local Storage\n" + e);        
+                }
+
+                document.getElementById('user').innerHTML = user["user001"].username;
+                document.getElementById('fac1').innerHTML = factor1["fac1_001"].data;
+                document.getElementById('fac2').innerHTML = factor2["fac2_001"].data;
+                document.getElementById('fac3').innerHTML = factor3["fac3_001"].data;
+                document.getElementById('fac4').innerHTML = factor4["fac4_001"].data;
+                document.getElementById('pw1').innerHTML = password["pw1_001"].password;
+                document.getElementById('pw2').innerHTML = password["pw2_001"].password;
+                document.getElementById('pw3').innerHTML = password["pw3_001"].password;
+                document.getElementById('boy').innerHTML = boy[0];
+            }
+
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js');
+            }
+
+            //Stop Context Menu
+            document.addEventListener("contextmenu", (e) => {
+                e.preventDefault();
+            }, false);
+            /*Stop inspection
+            document.addEventListener("keydown", (e) => {
+                if (e.ctrlKey || e.keyCode==123) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                }
+            });
+            */
+        </script>
+    </body>
+</html>
