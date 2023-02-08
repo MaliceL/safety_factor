@@ -27,9 +27,9 @@
 
         <h1 style="text-align:center ; margin-top: 10%">Currently Under Construction</h1>
 
-        <input type="text" id="loginuser" placeholder="Username"/>
-
         <br><br>
+
+        <input type="text" id="loginuser" placeholder="Enter Username"/>
 
         <button type="button" id="login" onclick="showlogin()">Login</button>
 
@@ -45,7 +45,25 @@
             }
 
             function showlogin() {
-                document.getElementById('logindiv').style.display = "block";
+                var userfound = false;
+                var user = [];
+                var loguser = document.getElementById('loginuser').value;
+
+                try {
+                    user = JSON.parse( localStorage[loguser]);
+                    alert("User found");
+                    userfound = true;
+                } catch (e) {
+                    alert("No data found");
+                    userfound = false;
+                }
+
+                if(userfound == true) {
+                    document.getElementById('logindiv').style.display = "block";
+                } else {
+                    document.getElementById('logindiv').style.display = "none";
+                    alert("ERROR");
+                }               
             }
 
             //Stop Context Menu
