@@ -9,34 +9,44 @@
         <link rel="stylesheet" href="src/assets/css/style.css">
     </head>
     <body>
-        <nav>
-            <div style="margin-left: 3%; margin-right: 25%;">
-                <ul>
-                    <li>
-                        <a href="index.html" style="font-size:30px">Home</a>
-                    </li>
-                    <li>
-                        <a href="src/register.html" style="font-size:30px">Register</a>
-                    </li>
-                    <li>
-                        <a href="src/test.html" style="font-size:30px">Testing</a>
-                    </li>
-                </ul>
+        <div class="nav">
+            <div class="nav-logo">
+                <img src="src/assets/images/logo-navbar.png"></a>
             </div>
-        </nav>
+            <div class="nav-content">
+                <a href="index.html">Home</a>
+                <a href="src/register.html">Register</a>
+                <a href="src/test.html">Testing</a>
+            </div>
+        </div>
 
         <h1 style="text-align:center ; margin-top: 10%">Currently Under Construction</h1>
 
         <br><br>
 
         <input type="text" id="loginuser" placeholder="Enter Username"/>
-
-        <button type="button" id="login" onclick="showlogin()">Login</button>
+        <button type="button" id="auth" onclick="showlogin()">Start Authentication</button>
 
         <br><br>
 
         <div id="logindiv">
             <b style="text-align:center">Test</b>
+            <div class="hdn-input" id="pw">
+                <input type="text" placeholder="Enter Password" id="pw_in"/>
+            </div>
+            <div class="hdn-input" id="pin">
+                <input type="number" placeholder="Enter PIN" id="pin_in"/>
+            </div>
+            <div class="hdn-input" id="color">
+                <button type="button" class="color-btn" id="bbtn" value="1" onclick="colorset('bbtn')" style="border-color: blue;background-color:blue"></button><br>
+                <button type="button" class="color-btn" id="rbtn" value="2" onclick="colorset('rbtn')" style="border-color: red;background-color:red"></button><br>
+                <button type="button" class="color-btn" id="gbtn" value="3" onclick="colorset('gbtn')" style="border-color: green;background-color:green"></button><br>
+                <button type="button" class="color-btn" id="ybtn" value="4" onclick="colorset('ybtn')" style="border-color: yellow;background-color:yellow"></button><br>
+            </div>
+            <div class="hdn-input" id="fac4">
+                <input type="text" placeholder="Hier könnte ihre Werbung stehen" id="fac4_in"/>
+            </div>
+            <button type="button" id="login" onclick="savelogin()">Login</button>
         </div>
 
         <script>
@@ -44,27 +54,97 @@
                     navigator.serviceWorker.register('/service-worker.js');
             }
 
+            var user = [];
+
             function showlogin() {
                 var userfound = false;
-                var user = [];
                 var loguser = document.getElementById('loginuser').value;
 
                 try {
                     user = JSON.parse( localStorage[loguser]);
-                    alert("User found");
                     userfound = true;
                 } catch (e) {
-                    alert("No data found");
                     userfound = false;
+                    alert("User not found");
                 }
 
                 if(userfound == true) {
                     document.getElementById('logindiv').style.display = "block";
                 } else {
                     document.getElementById('logindiv').style.display = "none";
-                    alert("ERROR");
-                }               
+                }
+                
+                if(user[0] == true) {
+                    document.getElementById('pw').style.display = "block";
+                }
+                if(user[2] == true) {
+                    document.getElementById('pin').style.display = "block";
+                }
+                if(user[4] == true) {
+                    document.getElementById('color').style.display = "block";
+                }
+                if(user[6] == true) {
+                    document.getElementById('fac4').style.display = "block";
+                }
             }
+
+            function savelogin() {
+                var f1 = false;
+                var f2 = false;
+                var f3 = false;
+                var f4 = false;
+
+                alert('save login reached')
+
+                if(user[0] == true) {
+                    if(document.getElementById('pw_in').value == user[1]) {
+                        f1 = true;
+                    }
+                } else {
+                    f1 = true;
+                }
+
+                if(user[2] == true) {
+                    if(document.getElementById('pin_in').value == user[3]) {
+                        f2 = true;
+                    }
+                } else {
+                    f2 = true;
+                }
+
+                if(user[4] == true) {
+                    if(colorcode == user[5]) {
+                        f3 = true;
+                    }
+                } else {
+                    f3 = true;
+                }
+
+                if(user[6] == true) {
+                    if(document.getElementById('fac4_in').value == user[7]) {
+                        f4 = true;
+                    }
+                } else {
+                    f4 = true;
+                }
+
+                if(f1 == true && f2 == true && f3 == true && f4 == true) {
+                    try {
+                        localStorage['cuser'] = JSON.stringify(document.getElementById('loginuser').value);
+                    } catch (e) {
+                        alert(e);
+                    }
+                }
+            }
+
+            var colorcode = "";
+
+            function colorset(btnid) {
+                colorcode = colorcode + document.getElementById(btnid).value;
+                document.getElementById(btnid).setAttribute('disabled',true);
+                document.getElementById(btnid).style.background = 'grey';
+                document.getElementById(btnid).style.borderColor = 'grey';
+            };
 
             //Stop Context Menu
             document.addEventListener("contextmenu", (e) => {
