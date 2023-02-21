@@ -59,8 +59,9 @@
                     document.write('<p>' + cpw[i] + '</p>');
                 }
 */               
-                for (let i = 0; i < 6; i++) {
+                for (let i = 0; i <= 6; i++) {
                     document.write('<div class="block"><p>' + cpw[i] + '</p><div><input type="text" disabled value="' + cpw[i+1] + '"/><input type="text" disabled value="' + cpw[i+2] + '"/></div><div><button type="button" class="sf-btn">Edit</button></div></div>')
+                    i = i+2;
                 }
             </script>
             <div class="block">

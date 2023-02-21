@@ -71,6 +71,10 @@
 
                 try {
                     user = JSON.parse( localStorage[reguser]);
+                    document.getElementById('pw').style.display = "none";
+                    document.getElementById('pin').style.display = "none";
+                    document.getElementById('color').style.display = "none";
+                    document.getElementById('fac4').style.display = "none";
                 } catch (e) {
                     alert("No data found");
                     user[0] = document.getElementById('factor1').checked;
