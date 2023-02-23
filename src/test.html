@@ -59,21 +59,14 @@
                     document.write('<p>' + cpw[i] + '</p>');
                 }
 */               
-                for (let i = 0; i <= 6; i++) {
-                    document.write('<div class="block"><p>' + cpw[i] + '</p><div><input type="text" disabled value="' + cpw[i+1] + '"/><input type="text" disabled value="' + cpw[i+2] + '"/></div><div><button type="button" class="sf-btn">Edit</button></div></div>')
+                for (let i = 0; i < 6; i++) {
+                    document.write('<div class="block"><p>' + cpw[i] + '</p><div><input type="text" id="' + cpw[i] + 'mail" disabled value="' + cpw[i+1] + '"/><input type="text" id="' + cpw[i] + 'pw"  disabled value="' + cpw[i+2] + '"/></div><div><button type="button" class="sf-btn" id="' + cpw[i] + 'edit" onclick="editentry(');
+                    document.write("'");
+                    document.write(cpw[i] + "'");
+                    document.write(')">Edit</button><button type="button" class="sf-btn" id="'+ cpw[i] + 'save" onclick="savechanges()" style="display: none">Save</button></div></div>'); 
                     i = i+2;
                 }
             </script>
-            <div class="block">
-                <p>' + cpw[i] + '</p>
-                <div>
-                    <input type="text" disabled value="' + cpw[i+1] + '"/>
-                    <input type="text" disabled value="' + cpw[i+2] + '"/>
-                </div>
-                <div>
-                    <button type="button" class="sf-btn">Edit</button>
-                </div>
-            </div>
         </div>
 
         <br><br>
@@ -152,6 +145,18 @@
                 document.getElementById('boy').innerHTML = boy[0];
             }
 
+            function editentry(name) {
+                alert('EDIT');
+                document.getElementById(name + 'mail').disabled = false;
+                document.getElementById(name + 'pw').disabled = false;
+                document.getElementById(name + 'edit').style.display = "none";
+                document.getElementById(name + 'save').style.display = "block";
+            }
+
+            function savechanges() {
+                alert('SAVE');
+                
+            }
 
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('/service-worker.js');
