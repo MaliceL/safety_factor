@@ -63,7 +63,10 @@
                     document.write('<div class="block"><p>' + cpw[i] + '</p><div><input type="text" id="' + cpw[i] + 'mail" disabled value="' + cpw[i+1] + '"/><input type="text" id="' + cpw[i] + 'pw"  disabled value="' + cpw[i+2] + '"/></div><div><button type="button" class="sf-btn" id="' + cpw[i] + 'edit" onclick="editentry(');
                     document.write("'");
                     document.write(cpw[i] + "'");
-                    document.write(')">Edit</button><button type="button" class="sf-btn" id="'+ cpw[i] + 'save" onclick="savechanges()" style="display: none">Save</button></div></div>'); 
+                    document.write(')">Edit</button><button type="button" class="sf-btn" id="'+ cpw[i] + 'save" onclick="savechanges(');
+                    document.write("'");
+                    document.write(cpw[i] + "'");
+                    document.write(')" style="display: none">Save</button><input type="hidden" id="' + cpw[i] + '">' + i + '</input></div></div>'); 
                     i = i+2;
                 }
             </script>
@@ -153,7 +156,7 @@
                 document.getElementById(name + 'save').style.display = "block";
             }
 
-            function savechanges() {
+            function savechanges(name) {
                 alert('SAVE');
                 
             }
