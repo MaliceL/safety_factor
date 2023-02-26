@@ -128,7 +128,8 @@
 
                 if(f1 == true && f2 == true && f3 == true && f4 == true) {
                     try {
-                        localStorage['cuser'] = JSON.stringify(document.getElementById('loginuser').value);
+                        localStorage['cuser'] = document.getElementById('loginuser').value;
+                        window.open('src/test.html', '_self');
                     } catch (e) {
                         alert(e);
                     }

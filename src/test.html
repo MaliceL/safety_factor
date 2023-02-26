@@ -31,9 +31,26 @@
 
         <br><br>
 
-        <button class="sf-btn" onclick="showdata()">Show current data</button>
+        <div>
+            <form id="formular">
+                <div style="max-width:50% ; display:block ; margin-left:15%">
+                    <label for="entryname">Entry Name</label>
+                    <input type="text" id="entryname" style="border:solid 1px" placeholder="Entry name"/>
+                </div>
+                <div style="max-width:50% ; display:block ; margin-left:15%">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" style="border:solid 1px" placeholder="Username / Mail"/>
+                </div>
+                <div style="max-width:50% ; display:block ; margin-left:15%">
+                    <label for="password">Password</label>
+                    <input type="text" id="password" style="border:solid 1px" placeholder="Password"/>
+                </div>
+                </br>
+                <button type="submit" class="sf-btn" style="margin-left:15%" onclick="newentry()">Create entry</button>
+            </form>
+        </div>
 
-        <br><br>
+        </br></br>
 
         <div class="row">
             <script>
@@ -59,14 +76,14 @@
                     document.write('<p>' + cpw[i] + '</p>');
                 }
 */               
-                for (let i = 0; i < 6; i++) {
+                for (let i = 0; i < cpw.length; i++) {
                     document.write('<div class="block"><p>' + cpw[i] + '</p><div><input type="text" id="' + cpw[i] + 'mail" disabled value="' + cpw[i+1] + '"/><input type="text" id="' + cpw[i] + 'pw"  disabled value="' + cpw[i+2] + '"/></div><div><button type="button" class="sf-btn" id="' + cpw[i] + 'edit" onclick="editentry(');
                     document.write("'");
                     document.write(cpw[i] + "'");
                     document.write(')">Edit</button><button type="button" class="sf-btn" id="'+ cpw[i] + 'save" onclick="savechanges(');
                     document.write("'");
                     document.write(cpw[i] + "'");
-                    document.write(')" style="display: none">Save</button><input type="hidden" id="' + cpw[i] + '">' + i + '</input></div></div>'); 
+                    document.write(')" style="display: none">Save</button><input type="hidden" id="' + cpw[i] + 'id" style="display:none">' + i + '</input></div></div>'); 
                     i = i+2;
                 }
             </script>
@@ -116,38 +133,6 @@
                 }
             }
 
-            function showdata(key) {
-                var user = {};
-                var factor1 = {};
-                var factor2 = {};
-                var factor3 = {};
-                var factor4 = {};
-                var password = {};
-                var boy = [];
-
-                try {
-                    user = JSON.parse( localStorage["users"]);
-                    factor1 = JSON.parse( localStorage["factor1"]);
-                    factor2 = JSON.parse( localStorage["factor2"]);
-                    factor3 = JSON.parse( localStorage["factor3"]);
-                    factor4 = JSON.parse( localStorage["factor4"]);
-                    password = JSON.parse( localStorage["passwords"]);
-                    boy = JSON.parse( localStorage["lischke"]);
-                } catch (e) {
-                    alert("Error when reading from Local Storage\n" + e);        
-                }
-
-                document.getElementById('user').innerHTML = user["user001"].username;
-                document.getElementById('fac1').innerHTML = factor1["fac1_001"].data;
-                document.getElementById('fac2').innerHTML = factor2["fac2_001"].data;
-                document.getElementById('fac3').innerHTML = factor3["fac3_001"].data;
-                document.getElementById('fac4').innerHTML = factor4["fac4_001"].data;
-                document.getElementById('pw1').innerHTML = password["pw1_001"].password;
-                document.getElementById('pw2').innerHTML = password["pw2_001"].password;
-                document.getElementById('pw3').innerHTML = password["pw3_001"].password;
-                document.getElementById('boy').innerHTML = boy[0];
-            }
-
             function editentry(name) {
                 alert('EDIT');
                 document.getElementById(name + 'mail').disabled = false;
@@ -158,7 +143,32 @@
 
             function savechanges(name) {
                 alert('SAVE');
-                
+                var entryindex = document.getElementById(name + 'id').value;
+
+                cpw[entryindex + 1] = document.getElementById(name + 'mail').value;
+                cpw[entryindex + 2] = document.getElementById(name + 'pw').value;
+
+                try {
+                    localStorage[cuser + 'PW']= JSON.stringify(cpw);
+                } catch (e) {
+                    alert('Could not update data');
+                }
+                document.getElementById(name + 'mail').disabled = true;
+                document.getElementById(name + 'pw').disabled = true;
+                document.getElementById(name + 'edit').style.display = "block";
+                document.getElementById(name + 'save').style.display = "none";
+            }
+
+            function newentry() {
+                cpw[cpw.length] = document.getElementById('entryname').value;
+                cpw[cpw.length] = document.getElementById('username').value;
+                cpw[cpw.length] = document.getElementById('password').value;
+
+                try {
+                    localStorage[cuser + 'PW']= JSON.stringify(cpw);
+                } catch (e) {
+                    alert('Could not add entry to data');
+                }
             }
 
             if ('serviceWorker' in navigator) {
