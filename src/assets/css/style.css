@@ -62,22 +62,12 @@ input::-webkit-inner-spin-button {
     text-align: center;
     padding: 14px;
     text-decoration: none;
-    font-size:30px;
+    font-size:50px;
     font-weight: 1000; 
 }
 
-.nav a:hover {
-    background-color: white;
-    color: black;
-  }
-
 .nav-logo {
     margin: 10px;
-}
-
-.nav-content {
-    background-color: aqua;
-    margin-left: auto;
 }
 
 .block {
@@ -87,19 +77,16 @@ input::-webkit-inner-spin-button {
     margin: 0 0 1rem 0;
 }
 
-.block img {
-    width: 75px;
-    height: 75px;
-    float: left;
-    margin: 0 1rem 0 0;
-}
-
 .block h2 {
     margin: 0 0 0.5rem 0;
 }
 
-/*NEW STYLES*/
 .block {
     display: grid;
     grid-template-columns: 25% 1fr 20%;
+}
+
+.indexblock {
+    display: grid;
+    grid-template-columns: 50% 50%;
 }

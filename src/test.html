@@ -31,22 +31,23 @@
 
         <br><br>
 
-        <div>
+        <div style="margin-left: 10px">
             <form id="formular">
-                <div style="max-width:50% ; display:block ; margin-left:15%">
-                    <label for="entryname">Entry Name</label>
-                    <input type="text" id="entryname" style="border:solid 1px" placeholder="Entry name"/>
-                </div>
-                <div style="max-width:50% ; display:block ; margin-left:15%">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" style="border:solid 1px" placeholder="Username / Mail"/>
-                </div>
-                <div style="max-width:50% ; display:block ; margin-left:15%">
-                    <label for="password">Password</label>
-                    <input type="text" id="password" style="border:solid 1px" placeholder="Password"/>
-                </div>
+                <table>
+                    <tr>
+                        <td><label for="entryname">Entry Name</label></td>
+                        <td><input type="text" id="entryname" style="border:solid 1px" placeholder="Entry name"/></td>
+                    <tr>    
+                        <td><label for="username">Username</label></td>
+                        <td><input type="text" id="username" style="border:solid 1px" placeholder="Username / Mail"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="password">Password</label></td>
+                        <td><input type="text" id="password" style="border:solid 1px" placeholder="Password"/></td>
+                    </tr>
+                </table>                    
                 </br>
-                <button type="submit" class="sf-btn" style="margin-left:15%" onclick="newentry()">Create entry</button>
+                <button type="submit" class="sf-btn" style="margin-left:10px" onclick="newentry()">Create entry</button>
             </form>
         </div>
 
