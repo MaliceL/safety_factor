@@ -83,7 +83,7 @@ input::-webkit-inner-spin-button {
 
 .block {
     display: grid;
-    grid-template-columns: 25% 1fr 20%;
+    grid-template-columns: 25% 1fr 25%;
 }
 
 .indexblock {

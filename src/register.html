@@ -79,7 +79,6 @@
                     document.getElementById('color').style.display = "none";
                     /*document.getElementById('fac4').style.display = "none";*/
                 } catch (e) {
-                    alert("No data found");
                     user[0] = document.getElementById('factor1').checked;
                     user[1] = document.getElementById('pw_in').value;
                     user[2] = document.getElementById('factor2').checked;
@@ -93,7 +92,7 @@
                 try {
                     localStorage[reguser]= JSON.stringify(user);
                 } catch (e) {
-                    alert("Could not save data");
+
                 }
 
             }

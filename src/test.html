@@ -57,14 +57,12 @@
                     userfound = true;
                 } catch (e) {
                     userfound = false;
-                    alert("User not found");
                 }
 
                 try {
                     cpw = JSON.parse(localStorage[cuser + 'PW']);
-                    alert("PW found");
                 } catch (e) {
-                    alert("PW not found");
+
                 }
 /*
                 for (let i = 0; i < 6; i++) {
@@ -129,7 +127,6 @@
             }
 
             function editentry(name) {
-                alert('EDIT');
                 document.getElementById(name + 'mail').disabled = false;
                 document.getElementById(name + 'pw').disabled = false;
                 document.getElementById(name + 'edit').style.display = "none";
@@ -137,7 +134,6 @@
             }
 
             function savechanges(name) {
-                alert('SAVE');
                 var entryindex = document.getElementById(name + 'id').value;
 
                 cpw[entryindex + 1] = document.getElementById(name + 'mail').value;
