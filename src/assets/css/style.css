@@ -88,5 +88,5 @@ input::-webkit-inner-spin-button {
 
 .indexblock {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 50% 30% 20%;
 }

@@ -9,60 +9,63 @@
         <link rel="stylesheet" href="assets/css/style.css">      
     </head>
     <body>
-        <nav>
-            <div style="margin-left: 3%; margin-right: 25%;">
-                <ul>
-                    <li>
-                        <a href="../index.html" style="font-size:30px">Home</a>
-                    </li>
-                    <li>
-                        <a href="register.html" style="font-size:30px">Register</a>
-                    </li>
-                    <li>
-                        <a href="test.html" style="font-size:30px">Testing</a>
-                    </li>
-                </ul>
+        <div class="nav">
+            <div class="nav-logo">
+                <img src="assets/images/logo-navbar.png"></a>
             </div>
-        </nav>
+            
+            <div class="nav-content">
+                <a href="../index.html">Safety Factor</a>
+            </div>
+        </div>
 
         <br></br>
 
-        <form id="formular">
-            <div style="max-width:50% ; display:block ; margin-left:15%">
-                <label for="username">Username</label>
-                <input type="text" id="username" style="border:solid 1px" aria-describedby="usernamehelp" placeholder="Username"/>
+        <div class="indexblock" style="margin-left:10px">
+            <div>
+                <form id="formular">
+                    <div style="max-width:50% ; display:block ; margin-left:15%">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" style="border:solid 1px" aria-describedby="usernamehelp" placeholder="Username"/>
+                    </div>
+                    <br>
+                    <div style="max-width:50% ; display:block ; margin-left:15%">
+                        <input type="checkbox" style="border:solid 1px" id="factor1"/>
+                        <label for="factor1">Password</label><br>
+                        <div class="hdn-input" id="pw">
+                            <input type="text" placeholder="Enter Password" id="pw_in"/>
+                        </div>
+                        <input type="checkbox" style="border:solid 1px" id="factor2"/>
+                        <label for="factor2">PIN</label><br>
+                        <div class="hdn-input" id="pin">
+                            <input type="number" placeholder="Enter PIN" id="pin_in"/>
+                        </div>
+                        <input type="checkbox" style="border:solid 1px" id="factor3"/>
+                        <label for="factor3">Colorcode</label><br>
+                        <div class="hdn-input" id="color">
+                            <button type="button" class="color-btn" id="bbtn" value="1" onclick="colorset('bbtn')" style="border-color: blue;background-color:blue"></button><br>
+                            <button type="button" class="color-btn" id="rbtn" value="2" onclick="colorset('rbtn')" style="border-color: red;background-color:red"></button><br>
+                            <button type="button" class="color-btn" id="gbtn" value="3" onclick="colorset('gbtn')" style="border-color: green;background-color:green"></button><br>
+                            <button type="button" class="color-btn" id="ybtn" value="4" onclick="colorset('ybtn')" style="border-color: yellow;background-color:yellow"></button><br>
+                        </div>
+                        <!--
+                        <input type="checkbox" style="border:solid 1px" id="factor4"/>
+                        <label for="factor4">Faktor 4</label><br>
+                        <div class="hdn-input" id="fac4">
+                            <input type="text" placeholder="Hier könnte ihre Werbung stehen"/>
+                        </div>
+                        -->
+                    </div>
+                    <br>
+                    <button type="submit" class="sf-btn" style="margin-left:15%" onclick="savedata()">Erstellen</button>
+                </form>
             </div>
-            <br>
-            <div style="max-width:50% ; display:block ; margin-left:15%">
-                <input type="checkbox" style="border:solid 1px" id="factor1"/>
-                <label for="factor1">Faktor 1</label><br>
-                <div class="hdn-input" id="pw">
-                    <input type="text" placeholder="Enter Password" id="pw_in"/>
-                </div>
-                <input type="checkbox" style="border:solid 1px" id="factor2"/>
-                <label for="factor2">Faktor 2</label><br>
-                <div class="hdn-input" id="pin">
-                    <input type="number" placeholder="Enter PIN" id="pin_in"/>
-                </div>
-                <input type="checkbox" style="border:solid 1px" id="factor3"/>
-                <label for="factor3">Faktor 3</label><br>
-                <div class="hdn-input" id="color">
-                    <button type="button" class="color-btn" id="bbtn" value="1" onclick="colorset('bbtn')" style="border-color: blue;background-color:blue"></button><br>
-                    <button type="button" class="color-btn" id="rbtn" value="2" onclick="colorset('rbtn')" style="border-color: red;background-color:red"></button><br>
-                    <button type="button" class="color-btn" id="gbtn" value="3" onclick="colorset('gbtn')" style="border-color: green;background-color:green"></button><br>
-                    <button type="button" class="color-btn" id="ybtn" value="4" onclick="colorset('ybtn')" style="border-color: yellow;background-color:yellow"></button><br>
-                </div>
-                <input type="checkbox" style="border:solid 1px" id="factor4"/>
-                <label for="factor4">Faktor 4</label><br>
-                <div class="hdn-input" id="fac4">
-                    <input type="text" placeholder="Hier könnte ihre Werbung stehen"/>
-                </div>
+            <div>
+                <h2>Register</h2>
+                Type in your username with which you will start your authentification.<br>
+                After that choose which login factors you want to use and fill them out.
             </div>
-            <br>
-            <button type="submit" class="sf-btn" style="margin-left:15%" onclick="savedata()">Erstellen</button>
-        </form>
-
-        <br><br>
+        </div>
 
         <script>
             function savedata() {               
@@ -74,7 +77,7 @@
                     document.getElementById('pw').style.display = "none";
                     document.getElementById('pin').style.display = "none";
                     document.getElementById('color').style.display = "none";
-                    document.getElementById('fac4').style.display = "none";
+                    /*document.getElementById('fac4').style.display = "none";*/
                 } catch (e) {
                     alert("No data found");
                     user[0] = document.getElementById('factor1').checked;
@@ -83,8 +86,8 @@
                     user[3] = document.getElementById('pin_in').value;
                     user[4] = document.getElementById('factor3').checked;
                     user[5] = colorcode; 
-                    user[6] = document.getElementById('factor4').checked;
-                    user[7] = "";
+                    /*user[6] = document.getElementById('factor4').checked;
+                    user[7] = "";*/
                 }
 
                 try {
@@ -133,7 +136,7 @@
                     document.getElementById('color').style.display = "none";
                 }
             });
-
+/*
             var check4 = document.getElementById('factor4');
 
             check4.addEventListener('change', function(e) {
@@ -143,7 +146,7 @@
                     document.getElementById('fac4').style.display = "none";
                 }
             });
-
+*/
             document.addEventListener
             //Stop Context Menu
             document.addEventListener("contextmenu", (e) => {

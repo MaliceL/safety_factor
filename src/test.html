@@ -9,21 +9,15 @@
         <link rel="stylesheet" href="assets/css/style.css">   
     </head>
     <body>
-        <nav>
-            <div style="margin-left: 3%; margin-right: 25%;">
-                <ul>
-                    <li>
-                        <a href="../index.html" style="font-size:30px">Home</a>
-                    </li>
-                    <li>
-                        <a href="register.html" style="font-size:30px">Register</a>
-                    </li>
-                    <li>
-                        <a href="test.html" style="font-size:30px">Testing</a>
-                    </li>
-                </ul>
+        <div class="nav">
+            <div class="nav-logo">
+                <img src="assets/images/logo-navbar.png"></a>
             </div>
-        </nav>
+            
+            <div class="nav-content">
+                <a href="../index.html">Safety Factor</a>
+            </div>
+        </div>
 
         <br><br>
 
@@ -53,7 +47,7 @@
 
         </br></br>
 
-        <div class="row" style="border: solid black">
+        <div class="row">
             <script>
                 userfound = false;
                 cuser = "";
@@ -78,13 +72,13 @@
                 }
 */               
                 for (let i = 0; i < cpw.length; i++) {
-                    document.write('<div class="block"><p>' + cpw[i] + '</p><div><input type="text" id="' + cpw[i] + 'mail" disabled value="' + cpw[i+1] + '"/><input type="text" id="' + cpw[i] + 'pw"  disabled value="' + cpw[i+2] + '"/></div><div><button type="button" class="sf-btn" id="' + cpw[i] + 'edit" onclick="editentry(');
+                    document.write('<div class="block" style="border: solid grey"><b>' + cpw[i] + '</b><div><input type="text" id="' + cpw[i] + 'mail" disabled value="' + cpw[i+1] + '"/><input type="text" id="' + cpw[i] + 'pw"  disabled value="' + cpw[i+2] + '"/></div><div><button type="button" class="sf-btn" id="' + cpw[i] + 'edit" onclick="editentry(');
                     document.write("'");
                     document.write(cpw[i] + "'");
                     document.write(')">Edit</button><button type="button" class="sf-btn" id="'+ cpw[i] + 'save" onclick="savechanges(');
                     document.write("'");
                     document.write(cpw[i] + "'");
-                    document.write(')" style="display: none">Save</button><input type="hidden" id="' + cpw[i] + 'id" style="display:none">' + i + '</input></div></div>'); 
+                    document.write(')" style="display: none">Save</button><input type="hidden" id="' + cpw[i] + 'id" style="display: none">' + i + '</input></div></div>'); 
                     i = i+2;
                 }
             </script>

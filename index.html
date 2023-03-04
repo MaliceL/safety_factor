@@ -55,9 +55,10 @@
             </div>
 
             <div>
-                <h2>Infotext</h2>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>      
+                <h2>One master password is not enough to protect all your other passwords?</h2>
+                Safety Control allows you to create your own authentification for your password manager. You decide the number of factors, to make sure your passwords are safe.<br><br>
+                Additionally you can download Safety Factor as an app on all compatible devices. For that look in the top right corner of your URL, there you can find a button to install the application.
+            </div>
         </div>
 
         <script>
@@ -94,16 +95,18 @@
                 if(user[4] == true) {
                     document.getElementById('color').style.display = "block";
                 }
+                /*
                 if(user[6] == true) {
                     document.getElementById('fac4').style.display = "block";
                 }
+                */
             }
 
             function savelogin() {
                 var f1 = false;
                 var f2 = false;
                 var f3 = false;
-                var f4 = false;
+                var f4 = true;
 
                 if(user[0] == true) {
                     if(document.getElementById('pw_in').value == user[1]) {
@@ -128,7 +131,7 @@
                 } else {
                     f3 = true;
                 }
-
+/*
                 if(user[6] == true) {
                     if(document.getElementById('fac4_in').value == user[7]) {
                         f4 = true;
@@ -136,7 +139,7 @@
                 } else {
                     f4 = true;
                 }
-
+*/
                 if(f1 == true && f2 == true && f3 == true && f4 == true) {
                     try {
                         localStorage['cuser'] = document.getElementById('loginuser').value;
